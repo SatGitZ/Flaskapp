@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-add-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-add
+  template:
+    metadata:
+      labels:
+        app: flask-add
+    spec:
+      containers:
+      - name: flask-add
+        image: yourdockerhubuser/flask-add:latest
+        ports:
+        - containerPort: 5000
