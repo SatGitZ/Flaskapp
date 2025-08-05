@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Git clone') {
       steps {
-        git branch: 'main', url: 'https://github.com/SatGitZ/Flaskapp.git'
+        git branch: 'master', url: 'https://github.com/SatGitZ/Flaskapp.git'
       }
     }
     stage('Build Docker image') {
@@ -20,7 +20,7 @@ pipeline {
       }
     }
     stage('Push to Docker Hub') {
-      when { branch 'main' }
+      when { branch 'master' }
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub-pat', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
           sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
